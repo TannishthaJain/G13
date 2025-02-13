@@ -27,6 +27,15 @@ router.get("/:id",async(req,res)=>{
     })
     res.json({data:blog})
 })
+router.get("/",async(req,res)=>{
+    try {
+        let allblogs = await prisma.blog.findMany();
+        console.log(allblogs);
+        res.json({blogs:allblogs})
+    } catch (error) {
+        res.json({error:error});
+    }
+})
 
 
 
